@@ -1,0 +1,76 @@
+.jersey-10-regular {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+    --primiray: #1493DA;
+    --secondary: #EFC156;
+}
+
+body {
+    background-color: var(--secondary);
+    font-style: normal;
+    font-size: 20px;
+    font-family: 'jersey 10', sans-serif;
+}
+
+.titles {
+    color : #000000;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 48px;
+}
+ 
+.subtitle {
+    font-size: 32px;
+}
+
+.text {
+    color: black;
+    text-align: left;
+}
+
+.project-box {
+    background-color: var(--primiray);
+    width: 40vw;
+    height: 60vh;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.projects {
+    color: black;
+    text-align: center;
+}
+
+a:link {
+    color: var(--secondary);
+}
+
+a:visited {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+footer {
+    color: black;
+    font-size: small;
+    font-style: italic;
+}
+
+img {
+    border: black;
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 10px;
+}
