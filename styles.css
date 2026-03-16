@@ -53,6 +53,7 @@ body {
     border-radius: 10px;
     display: inline-block;
     margin: 10px;
+    overflow-y: auto;
 }
 
 .project-box img {
