@@ -36,8 +36,8 @@ body {
 
 .project-box {
     background-color: var(--primiray);
-    width: 40vw;
-    height: 60vh;
+    width: 450px;
+    height: 350px;
     border-radius: 10px;
     display: inline-block;
     margin: 10px;
@@ -73,4 +73,6 @@ img {
     border-style: solid;
     border-width: 5px;
     border-radius: 10px;
+    width: 400px;
+    height: 300px;
 }
