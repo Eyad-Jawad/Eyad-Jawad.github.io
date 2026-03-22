@@ -1,94 +1,166 @@
-.jersey-10-regular {
-  font-family: "Jersey 10", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
 :root {
-    --primiray: #1493DA;
+    --primary: #1493DA;
     --secondary: #EFC156;
+    --bg: #f5f5f5;
+    --text: #111;
 }
 
 body {
     background-color: var(--secondary);
-    font-style: normal;
     font-size: 20px;
-    font-family: 'jersey 10', sans-serif;
+    font-family: 'Jersey 10', sans-serif;
+    margin: 0;
 }
 
+/* Layout container */
+main {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Titles */
 .titles {
-    color : #000000;
+    color: var(--text);
     text-align: center;
+    margin: 10px 0;
 }
 
 .main-title {
-    font-size: 48px;
+    font-size: 56px;
 }
- 
+
 .subtitle {
-    font-size: 32px;
+    font-size: 28px;
+    opacity: 0.8;
 }
 
+/* Text */
 .text {
-    color: black;
-    text-align: left;
-    padding-left: 5%;
-    padding-right: 5%;
+    color: var(--text);
+    padding: 0 5%;
 }
 
-.project-tags {
-    font-size: 22px;
-}
-
-.project-dicreption {
-    font-size: 18px;
-}
-
-.project-box {
-    background-color: var(--primiray);
-    width: 40vw;
-    height: 75vh;
-    min-width: 250px;
-    min-height: 175px;
-    border-radius: 10px;
-    display: inline-block;
-    margin: 10px;
-    overflow-y: auto;
-}
-
-.project-box img {
-    border: black;
-    border-style: solid;
-    border-width: 5px;
-    border-radius: 10px;
-    width: 35vw;
-    height: 50vh;
-    min-width: 200px;
-    min-height: 150px;
-    padding-bottom: 0%;
-}
-
+/* Grid instead of inline-block */
 .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Project cards */
+.project-box {
+    background-color: var(--primary);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect (important for "feel") */
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Make entire card clickable cleanly */
+.project-box a {
+    display: block;
+    padding: 15px;
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+/* Images */
+.project-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+/* Tags + description */
+.project-tags {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.project-description {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Links */
+a:hover {
     color: black;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Container layout */
+.about {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background-color: #fdfdfd; /* clean, near-white */
+    border-radius: 20px;
+    padding: 20px;
+
+    /* subtle depth instead of harsh contrast */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+
+    border: 2px solid rgba(0,0,0,0.1);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    border: 6px solid var(--primary);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Titles inside cards */
+.card h2 {
+    margin-top: 0;
     text-align: center;
 }
 
-a:link {
+/* Language badges */
+.lang-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.lang {
+    background-color: var(--primary);
     color: var(--secondary);
+    padding: 6px 14px;
+    border-radius: 999px; /* pill shape */
+    font-size: 16px;
+
+    border: 2px solid black;
+
+    transition: all 0.2s ease;
 }
 
-a:visited {
+.lang:hover {
+    background-color: black;
     color: var(--secondary);
-    text-decoration: none;
-}
-
-a:hover {
-    color: black;
-    text-decoration: none;
-}
-
-footer {
-    color: black;
-    font-size: small;
-    font-style: italic;
+    transform: scale(1.05);
 }
