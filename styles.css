@@ -1,170 +1,642 @@
 :root {
-    /* --primary: #1493DA;
-    --secondary: #EFC156; */
-    --primary: #303030;
-    --secondary: #e5e5e5;
-    --bg: #f5f5f5;
-    --text: #111;
+    --bg: #0d0d0f;
+    --bg-soft: #151518;
+    --surface: #1b1b1f;
+    --surface-hover: #222228;
+
+    --primary: #f1f1f1;
+    --secondary: #c8c8ce;
+    --muted: #85858e;
+
+    --border: rgba(255, 255, 255, 0.11);
+    --border-strong: rgba(255, 255, 255, 0.2);
+
+    --accent: #ffffff;
+
+    --radius: 20px;
+    --radius-small: 12px;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28);
+
+    --shadow-hover:
+        0 18px 45px rgba(0, 0, 0, 0.42);
+}
+
+
+/* ==============================
+   Base
+   ============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--secondary);
-    font-size: 20px;
-    font-family: 'Jersey 10', sans-serif;
     margin: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            #29292f 0%,
+            var(--bg) 45%
+        );
+
+    background-attachment: fixed;
+
+    color: var(--primary);
+
+    font-family: "Jersey 10", sans-serif;
+    font-size: 20px;
+    line-height: 1.4;
 }
 
-/* Layout container */
+img,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+
+/* ==============================
+   Layout
+   ============================== */
+
 main {
-    max-width: 1200px;
-    margin: auto;
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
 }
 
-/* Titles */
+
+/* ==============================
+   Header
+   ============================== */
+
 .titles {
-    color: var(--text);
+    position: relative;
+
+    margin: 65px 0 55px;
+
     text-align: center;
-    margin: 10px 0;
 }
 
-.main-title {
-    font-size: 56px;
-}
+.titles::after {
+    content: "";
 
-.subtitle {
-    font-size: 28px;
+    display: block;
+
+    width: 70px;
+    height: 3px;
+
+    margin: 25px auto 0;
+
+    background: var(--primary);
+    border-radius: 999px;
+
     opacity: 0.8;
 }
 
-/* Text */
-.text {
-    color: var(--text);
-    padding: 0 5%;
+.main-title {
+    margin: 0;
+
+    color: #fff;
+
+    font-size: clamp(52px, 9vw, 88px);
+    line-height: 0.9;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 4px 0 rgba(255, 255, 255, 0.05),
+        0 12px 35px rgba(0, 0, 0, 0.45);
 }
 
-/* Grid instead of inline-block */
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+.subtitle {
+    margin: 16px 0 0;
+
+    color: var(--muted);
+
+    font-size: clamp(22px, 4vw, 30px);
+    letter-spacing: 1px;
 }
 
-/* Project cards */
-.project-box {
-    background-color: var(--primary);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 
-/* Hover effect (important for "feel") */
-.project-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
+/* ==============================
+   About
+   ============================== */
 
-/* Make entire card clickable cleanly */
-.project-box a {
-    display: block;
-    padding: 15px;
-    color: var(--secondary);
-    text-decoration: none;
-}
-
-/* Images */
-.project-box img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border: 3px solid black;
-    border-radius: 10px;
-}
-
-/* Tags + description */
-.project-tags {
-    font-size: 18px;
-    margin-top: 10px;
-    color: var(--secondary);
-}
-
-.project-description {
-    font-size: 16px;
-    opacity: 0.9;
-    color: var(--secondary);
-}
-
-/* Links */
-a:hover {
-    color: black;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    font-style: italic;
-}
-
-/* Container layout */
 .about {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 20px;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+
+    gap: 22px;
+
+    max-width: 1000px;
+
+    margin: 0 auto 65px;
 }
 
+
+/* ==============================
+   General Cards
+   ============================== */
+
 .card {
-    background-color: #fdfdfd; /* clean, near-white */
-    border-radius: 20px;
-    padding: 20px;
+    position: relative;
 
-    /* subtle depth instead of harsh contrast */
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    padding: 28px;
 
-    border: 2px solid rgba(0,0,0,0.1);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.015)
+        ),
+        var(--surface);
 
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
 
-    border: 6px solid var(--primary);
+    box-shadow: var(--shadow);
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255, 255, 255, 0.06),
+            transparent 35%
+        );
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+
+    border-color: var(--border-strong);
+
+    box-shadow: var(--shadow-hover);
 }
 
-/* Titles inside cards */
 .card h2 {
-    margin-top: 0;
+    position: relative;
+
+    margin: 0 0 20px;
+
+    font-size: 32px;
+    line-height: 1;
+
     text-align: center;
 }
 
-/* Language badges */
+.card p {
+    position: relative;
+
+    color: var(--secondary);
+}
+
+.card a {
+    position: relative;
+
+    text-underline-offset: 4px;
+
+    transition:
+        color 0.15s ease,
+        opacity 0.15s ease;
+}
+
+.card a:hover {
+    color: white;
+}
+
+
+/* ==============================
+   Languages
+   ============================== */
+
 .lang-list {
     display: flex;
+
     flex-wrap: wrap;
-    gap: 10px;
+
     justify-content: center;
+
+    gap: 9px;
 }
 
 .lang {
-    background-color: var(--primary);
-    color: var(--secondary);
     padding: 6px 14px;
-    border-radius: 999px; /* pill shape */
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: var(--secondary);
+
+    border: 1px solid var(--border);
+
+    border-radius: 999px;
+
     font-size: 16px;
 
-    border: 2px solid black;
-
-    transition: all 0.2s ease;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
 }
 
 .lang:hover {
-    background-color: black;
-    color: var(--secondary);
-    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.12);
+
+    border-color: var(--border-strong);
+
+    transform: translateY(-2px);
+}
+
+
+/* ==============================
+   Projects
+   ============================== */
+
+.projects {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+
+    gap: 26px;
+
+    margin: 0 0 65px;
+}
+
+
+/* ==============================
+   Project Card
+   ============================== */
+
+.project-box {
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.01)
+        ),
+        var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-7px);
+
+    border-color: var(--border-strong);
+
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* ==============================
+   Project Header
+   ============================== */
+
+.project-link {
+    display: block;
+
+    padding: 20px 22px 16px;
+
+    color: var(--primary);
+
+    text-decoration: none;
+
+    transition:
+        color 0.15s ease,
+        background 0.15s ease;
+}
+
+.project-link:hover {
+    color: white;
+
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.project-title {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin: 0;
+
+    font-size: 30px;
+
+    line-height: 1;
+}
+
+.project-title span {
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    opacity: 0.45;
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+}
+
+.project-link:hover .project-title span {
+    opacity: 1;
+
+    transform: translate(2px, -2px);
+}
+
+
+/* ==============================
+   Project Media
+   ============================== */
+
+.project-media {
+    position: relative;
+
+    width: calc(100% - 28px);
+
+    aspect-ratio: 16 / 9;
+
+    margin: 0 14px 18px;
+
+    overflow: hidden;
+
+    background: #09090b;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: var(--radius-small);
+}
+
+.project-media::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.05),
+            transparent 40%,
+            rgba(0, 0, 0, 0.2)
+        );
+}
+
+.project-media img,
+.project-media video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.45s ease;
+}
+
+.project-box:hover .project-media img,
+.project-box:hover .project-media video {
+    transform: scale(1.025);
+}
+
+
+/* Screenshot mode */
+
+.project-media.contain img,
+.project-media.contain video {
+    object-fit: contain;
+}
+
+
+/* Full-height media */
+
+.project-media.auto {
+    aspect-ratio: auto;
+}
+
+.project-media.auto img,
+.project-media.auto video {
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* ==============================
+   Project Content
+   ============================== */
+
+.project-content {
+    padding: 0 22px 24px;
+}
+
+.project-tags {
+    margin: 0 0 12px;
+
+    color: #a7a7af;
+
+    font-size: 17px;
+
+    line-height: 1.3;
+
+    letter-spacing: 0.2px;
+}
+
+.project-description {
+    margin: 0 0 12px;
+
+    color: #dedee3;
+
+    font-size: 17px;
+
+    line-height: 1.4;
+}
+
+
+/* ==============================
+   Secondary Links
+   ============================== */
+
+.project-box .secondary-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 0 22px 22px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    text-decoration: underline;
+
+    text-underline-offset: 3px;
+
+    transition: color 0.15s ease;
+}
+
+.project-box .secondary-link:hover {
+    color: white;
+}
+
+
+/* ==============================
+   Focus
+   ============================== */
+
+.project-box a:focus-visible,
+.card a:focus-visible,
+.lang:focus-visible {
+    outline: 2px solid white;
+
+    outline-offset: 4px;
+
+    border-radius: 4px;
+}
+
+
+/* ==============================
+   Footer
+   ============================== */
+
+footer {
+    padding: 20px 20px 40px;
+
+    color: var(--muted);
+
+    text-align: center;
+
+    font-size: 15px;
+
+    opacity: 0.75;
+}
+
+footer img {
+    margin: 0 auto 10px;
+
+    opacity: 0.65;
+}
+
+
+/* ==============================
+   Mobile
+   ============================== */
+
+@media (max-width: 600px) {
+    main {
+        width: min(100% - 24px, 1180px);
+    }
+
+    .titles {
+        margin: 45px 0 40px;
+    }
+
+    .main-title {
+        font-size: clamp(48px, 16vw, 70px);
+    }
+
+    .projects {
+        gap: 18px;
+    }
+
+    .about {
+        margin-bottom: 45px;
+
+        gap: 18px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .project-link {
+        padding: 18px 18px 14px;
+    }
+
+    .project-media {
+        width: calc(100% - 20px);
+
+        margin-right: 10px;
+        margin-left: 10px;
+
+        border-radius: 10px;
+    }
+
+    .project-content {
+        padding-right: 18px;
+        padding-bottom: 20px;
+        padding-left: 18px;
+    }
+
+    .project-title {
+        font-size: 27px;
+    }
+}
+
+
+/* ==============================
+   Reduced Motion
+   ============================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }
