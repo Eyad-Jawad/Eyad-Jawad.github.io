@@ -1,20 +1,25 @@
 :root {
-    --bg: #0d0d0f;
-    --surface: #18181c;
-    --surface-hover: #202025;
+    --bg: #0b0c0f;
+    --surface: #111318;
+    --surface-hover: #171a20;
+    --surface-raised: #15181e;
 
-    --primary: #f1f1f1;
-    --secondary: #c8c8ce;
-    --muted: #85858e;
+    --primary: #f3efe6;
+    --secondary: #c8c3b8;
+    --muted: #817e76;
 
-    --border: rgba(255, 255, 255, 0.11);
-    --border-strong: rgba(255, 255, 255, 0.22);
+    --accent: #d6a85a;
+    --accent-bright: #efc777;
+    --accent-dark: #92713b;
 
-    --radius: 20px;
-    --radius-small: 12px;
+    --border: rgba(243, 239, 230, 0.09);
+    --border-strong: rgba(214, 168, 90, 0.45);
 
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-    --shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.42);
+    --radius: 14px;
+    --radius-small: 9px;
+
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+    --shadow-hover: 0 18px 42px rgba(0, 0, 0, 0.38);
 }
 
 
@@ -35,18 +40,42 @@ body {
     min-width: 320px;
 
     background:
-        radial-gradient(
-            circle at 50% -20%,
-            #29292f 0%,
-            var(--bg) 45%
-        );
+        linear-gradient(
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+        ),
+        var(--bg);
 
+    background-size: 42px 42px;
     background-attachment: fixed;
 
     color: var(--primary);
     font-family: "Jersey 10", sans-serif;
     font-size: 20px;
     line-height: 1.4;
+}
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(214, 168, 90, 0.08),
+            transparent 35%
+        );
+
+    z-index: -1;
 }
 
 img,
@@ -76,7 +105,9 @@ main {
 
 .titles {
     position: relative;
-    margin: 65px 0 55px;
+
+    margin: 75px 0 70px;
+
     text-align: center;
 }
 
@@ -85,38 +116,38 @@ main {
 
     display: block;
 
-    width: 70px;
-    height: 3px;
+    width: 90px;
+    height: 2px;
 
-    margin: 25px auto 0;
+    margin: 28px auto 0;
 
-    background: var(--primary);
-    border-radius: 999px;
+    background: var(--accent);
 
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .main-title {
     margin: 0;
 
-    color: #fff;
+    color: var(--primary);
 
-    font-size: clamp(52px, 9vw, 88px);
-    line-height: 0.9;
+    font-size: clamp(56px, 10vw, 96px);
+    line-height: 0.85;
 
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 
     text-shadow:
-        0 4px 0 rgba(255, 255, 255, 0.05),
-        0 12px 35px rgba(0, 0, 0, 0.45);
+        0 3px 0 rgba(255, 255, 255, 0.025),
+        0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .subtitle {
-    margin: 16px 0 0;
+    margin: 18px 0 0;
 
     color: var(--muted);
 
     font-size: clamp(22px, 4vw, 30px);
+
     letter-spacing: 1px;
 }
 
@@ -131,11 +162,11 @@ main {
     grid-template-columns:
         repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 
-    gap: 22px;
+    gap: 18px;
 
     max-width: 1000px;
 
-    margin: 0 auto 65px;
+    margin: 0 auto 75px;
 }
 
 
@@ -146,51 +177,29 @@ main {
 .card {
     position: relative;
 
-    padding: 28px;
+    padding: 30px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.055),
-            rgba(255, 255, 255, 0.015)
-        ),
-        var(--surface);
+    background: var(--surface);
 
     border: 1px solid var(--border);
     border-radius: var(--radius);
 
     box-shadow: var(--shadow);
 
-    backdrop-filter: blur(8px);
-
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
-.card::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    border-radius: inherit;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0.06),
-            transparent 35%
-        );
-}
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
 
     border-color: var(--border-strong);
+
+    background: var(--surface-raised);
 
     box-shadow: var(--shadow-hover);
 }
@@ -200,19 +209,24 @@ main {
 
     margin: 0 0 20px;
 
+    color: var(--primary);
+
     font-size: 32px;
     line-height: 1;
 
-    text-align: center;
+    text-align: left;
 }
 
 .card p {
     position: relative;
+
     color: var(--secondary);
 }
 
 .card a {
     position: relative;
+
+    color: var(--accent);
 
     text-underline-offset: 4px;
 
@@ -222,7 +236,7 @@ main {
 }
 
 .card a:hover {
-    color: white;
+    color: var(--accent-bright);
 }
 
 
@@ -235,34 +249,37 @@ main {
 
     flex-wrap: wrap;
 
-    justify-content: center;
+    justify-content: flex-start;
 
-    gap: 9px;
+    gap: 8px;
 }
 
 .lang {
-    padding: 6px 14px;
+    padding: 5px 11px;
 
-    background: rgba(255, 255, 255, 0.06);
+    background: transparent;
 
     color: var(--secondary);
 
     border: 1px solid var(--border);
 
-    border-radius: 999px;
+    border-radius: 6px;
 
     font-size: 16px;
 
     transition:
-        background 0.18s ease,
-        border-color 0.18s ease,
-        transform 0.18s ease;
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
 }
 
 .lang:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(214, 168, 90, 0.08);
 
-    border-color: var(--border-strong);
+    border-color: var(--accent-dark);
+
+    color: var(--accent-bright);
 
     transform: translateY(-2px);
 }
@@ -278,9 +295,9 @@ main {
     grid-template-columns:
         repeat(auto-fit, minmax(min(100%, 340px), 1fr));
 
-    gap: 26px;
+    gap: 20px;
 
-    margin: 0 0 75px;
+    margin: 0 0 90px;
 }
 
 
@@ -296,13 +313,7 @@ main {
 
     min-width: 0;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.045),
-            rgba(255, 255, 255, 0.01)
-        ),
-        var(--surface);
+    background: var(--surface);
 
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -310,13 +321,13 @@ main {
     box-shadow: var(--shadow);
 
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .project-box:hover {
-    transform: translateY(-7px);
+    transform: translateY(-6px);
 
     border-color: var(--border-strong);
 
@@ -331,20 +342,26 @@ main {
 .project-link {
     display: block;
 
-    padding: 20px 22px 16px;
+    padding: 22px 22px 18px;
 
     color: var(--primary);
 
     text-decoration: none;
 
+    border-bottom: 1px solid transparent;
+
     transition:
         color 0.15s ease,
-        background 0.15s ease;
+        background 0.15s ease,
+        border-color 0.15s ease;
 }
 
 .project-link:hover {
-    color: white;
-    background: rgba(255, 255, 255, 0.025);
+    color: var(--accent-bright);
+
+    background: rgba(214, 168, 90, 0.025);
+
+    border-bottom-color: var(--border);
 }
 
 .project-title {
@@ -364,10 +381,12 @@ main {
 .project-title span {
     flex-shrink: 0;
 
-    font-family: Arial, sans-serif;
-    font-size: 20px;
+    color: var(--accent);
 
-    opacity: 0.45;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+
+    opacity: 0.55;
 
     transition:
         opacity 0.15s ease,
@@ -376,6 +395,7 @@ main {
 
 .project-link:hover .project-title span {
     opacity: 1;
+
     transform: translate(2px, -2px);
 }
 
@@ -394,9 +414,10 @@ main {
 
     overflow: hidden;
 
-    background: #09090b;
+    background: #08090b;
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+
     border-radius: var(--radius-small);
 }
 
@@ -411,8 +432,7 @@ main {
     background:
         linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.05),
-            transparent 40%,
+            rgba(0, 0, 0, 0),
             rgba(0, 0, 0, 0.2)
         );
 }
@@ -424,12 +444,12 @@ main {
 
     object-fit: cover;
 
-    transition: transform 0.45s ease;
+    transition: transform 0.4s ease;
 }
 
 .project-box:hover .project-media img,
 .project-box:hover .project-media video {
-    transform: scale(1.025);
+    transform: scale(1.02);
 }
 
 .project-media.contain img,
@@ -445,6 +465,7 @@ main {
 .project-media.auto video {
     width: 100%;
     height: auto;
+
     object-fit: contain;
 }
 
@@ -454,37 +475,33 @@ main {
    ============================== */
 
 .project-content {
-    padding: 0 22px 24px;
+    padding: 0 22px 26px;
 }
 
 .project-tags {
     margin: 0 0 12px;
 
-    color: #a7a7af;
+    color: var(--accent);
 
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.3;
+
+    opacity: 0.85;
 }
 
 .project-description {
     margin: 0 0 12px;
 
-    color: #dedee3;
+    color: var(--secondary);
 
     font-size: 17px;
-    line-height: 1.4;
+    line-height: 1.45;
 }
 
 
 /* ==============================
-   Open Source
+   Section Headings
    ============================== */
-
-.open-source {
-    max-width: 1000px;
-
-    margin: 0 auto 75px;
-}
 
 .section-heading {
     display: flex;
@@ -498,12 +515,12 @@ main {
 }
 
 .section-label {
-    margin: 0 0 5px;
+    margin: 0 0 6px;
 
-    color: var(--muted);
+    color: var(--accent);
 
     font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
 
     letter-spacing: 3px;
@@ -512,7 +529,9 @@ main {
 .section-heading h2 {
     margin: 0;
 
-    font-size: 42px;
+    color: var(--primary);
+
+    font-size: 44px;
     line-height: 0.9;
 }
 
@@ -529,7 +548,7 @@ main {
 }
 
 .section-heading > a:hover {
-    color: white;
+    color: var(--accent-bright);
 }
 
 .section-description {
@@ -541,13 +560,151 @@ main {
 }
 
 
+/* ==============================
+   Technical Blog
+   ============================== */
+
+.technical-blog {
+    max-width: 1000px;
+
+    margin: 0 auto 90px;
+}
+
+.blog-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.blog-card {
+    display: block;
+
+    min-width: 0;
+
+    padding: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+
+    color: inherit;
+
+    text-decoration: none;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+
+    border-color: var(--border-strong);
+
+    background: var(--surface-raised);
+
+    box-shadow: var(--shadow-hover);
+}
+
+.blog-card-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.blog-card-header h3 {
+    min-width: 0;
+
+    margin: 0;
+
+    color: var(--primary);
+
+    font-size: 25px;
+    line-height: 1;
+}
+
+.blog-card-header span {
+    flex-shrink: 0;
+
+    color: var(--accent);
+
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+
+    opacity: 0.55;
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+}
+
+.blog-card:hover .blog-card-header span {
+    opacity: 1;
+
+    transform: translate(2px, -2px);
+}
+
+.blog-card p {
+    margin: 12px 0 17px;
+
+    color: var(--secondary);
+
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.blog-meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.blog-meta span {
+    padding: 4px 9px;
+
+    background: rgba(214, 168, 90, 0.045);
+
+    border: 1px solid var(--border);
+
+    border-radius: 5px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* ==============================
+   Open Source
+   ============================== */
+
+.open-source {
+    max-width: 1000px;
+
+    margin: 0 auto 90px;
+}
+
+
 /* Repository cards */
 
 .repository-list {
     display: grid;
 
-    /* Three cards across on desktop. */
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 14px;
 }
@@ -559,27 +716,23 @@ main {
 
     padding: 20px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.045),
-            rgba(255, 255, 255, 0.01)
-        ),
-        var(--surface);
+    background: var(--surface);
 
     border: 1px solid var(--border);
+
     border-radius: var(--radius-small);
 
     color: inherit;
+
     text-decoration: none;
 
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: var(--shadow);
 
     transition:
         transform 0.2s ease,
         border-color 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .repository:hover {
@@ -588,6 +741,8 @@ main {
     border-color: var(--border-strong);
 
     background: var(--surface-hover);
+
+    box-shadow: var(--shadow-hover);
 }
 
 .repository-header {
@@ -604,6 +759,8 @@ main {
 
     margin: 0;
 
+    color: var(--primary);
+
     font-size: 25px;
     line-height: 1;
 }
@@ -611,18 +768,21 @@ main {
 .repository-arrow {
     flex-shrink: 0;
 
-    color: var(--muted);
+    color: var(--accent);
 
     font-family: Arial, sans-serif;
     font-size: 17px;
 
+    opacity: 0.55;
+
     transition:
-        color 0.15s ease,
+        opacity 0.15s ease,
         transform 0.15s ease;
 }
 
 .repository:hover .repository-arrow {
-    color: white;
+    opacity: 1;
+
     transform: translate(2px, -2px);
 }
 
@@ -632,7 +792,7 @@ main {
     color: var(--secondary);
 
     font-size: 16px;
-    line-height: 1.35;
+    line-height: 1.4;
 }
 
 .repository-meta {
@@ -646,10 +806,11 @@ main {
 .repository-meta span {
     padding: 4px 9px;
 
-    background: rgba(255, 255, 255, 0.055);
+    background: rgba(255, 255, 255, 0.025);
 
     border: 1px solid var(--border);
-    border-radius: 999px;
+
+    border-radius: 5px;
 
     color: var(--muted);
 
@@ -665,8 +826,10 @@ main {
 .card a:focus-visible,
 .lang:focus-visible,
 .repository:focus-visible,
+.blog-card:focus-visible,
 .section-heading > a:focus-visible {
-    outline: 2px solid white;
+    outline: 2px solid var(--accent);
+
     outline-offset: 4px;
 
     border-radius: 4px;
@@ -691,7 +854,8 @@ footer {
 
 footer img {
     margin: 0 auto 10px;
-    opacity: 0.65;
+
+    opacity: 0.6;
 }
 
 
@@ -700,8 +864,10 @@ footer img {
    ============================== */
 
 @media (max-width: 900px) {
-    .repository-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .repository-list,
+    .blog-list {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -711,7 +877,7 @@ footer img {
     }
 
     .titles {
-        margin: 45px 0 40px;
+        margin: 50px 0 45px;
     }
 
     .main-title {
@@ -719,29 +885,32 @@ footer img {
     }
 
     .projects {
-        gap: 18px;
-        margin-bottom: 55px;
+        gap: 16px;
+
+        margin-bottom: 65px;
     }
 
     .about {
-        margin-bottom: 45px;
-        gap: 18px;
+        margin-bottom: 50px;
+
+        gap: 16px;
     }
 
     .card {
-        padding: 22px;
+        padding: 24px;
     }
 
     .project-link {
-        padding: 18px 18px 14px;
+        padding: 19px 18px 15px;
     }
 
     .project-media {
         width: calc(100% - 20px);
+
         margin-right: 10px;
         margin-left: 10px;
 
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     .project-content {
@@ -756,15 +925,23 @@ footer img {
 
     .section-heading {
         align-items: flex-start;
+
         flex-direction: column;
+
         gap: 10px;
     }
 
     .section-heading h2 {
-        font-size: 36px;
+        font-size: 38px;
     }
 
-    .repository-list {
+    .technical-blog,
+    .open-source {
+        margin-bottom: 65px;
+    }
+
+    .repository-list,
+    .blog-list {
         grid-template-columns: 1fr;
     }
 }
